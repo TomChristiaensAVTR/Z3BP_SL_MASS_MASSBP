@@ -1,14 +1,31 @@
 # Z3BP_SL_MASS_MASSBP
 
 **Some General information**
-The scope we want to achieve is to have a similiar transaction like XD99 for BP's in S4.
-The implementation is done using API method cl_md_bp_maintain=>maintain".
+The scope we want to achieve is to have a similiar transaction like XD99 for BP's in S4HANA.
+The implementation is done using API method "cl_md_bp_maintain=>maintain".
+There is no need to fiddle with the comnbination of multiple BAPI's.
+
 The implementation is parallel enabled using the class cl_abap_parallel.
+
+Not all the BP dimensions/tables are foreseen for the moment. Indeed, when checking the I_DATA import structure of cl_md_bp_maintain=>maintain you might understand why.
+This is really really really really complex.
+Therefore for the moment, from a MASS point of view there is a 1 to 1 mapping to cl_md_bp_maintain=>maintain.
+
+<img width="1213" height="563" alt="image" src="https://github.com/user-attachments/assets/d2a99497-abc3-4409-ab35-43647ac544d7" />
+
+Also some fields pop up in different tables. For example NAME1 can be found in KNA1, but also in BP tables.
+I have foreseen these fields in the corresponding view that can be 1 to 1 mapped to the cl_md_bp_maintain=>maintain input structure.
+
+<img width="1348" height="980" alt="image" src="https://github.com/user-attachments/assets/f448a05d-92e5-4e83-b6e4-5f3e55dff53e" />
+
+
 
 **Setup**
 In order to setup the transaction MASS for the custom BP object the following needs to be done:
 
 1/ STEP 1: Upload the coding in src folder.
+Take into account that the views might contain references to Z fields that do not exist in your system. 
+Therefore the activation could raise an error.
 
 2/ STEP 2: Transaction SM34 for MASSOBJECTS
 
