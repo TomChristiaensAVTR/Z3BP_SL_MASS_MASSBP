@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SOBJ" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOJTB>
+    <TOJTB>
+     <NAME>ZMASSBP</NAME>
+     <ACTIVE>X</ACTIVE>
+     <ACTIVELANG>E</ACTIVELANG>
+     <PARENT>BUS1006</PARENT>
+     <PROGNAME>ZMASSBP</PROGNAME>
+     <EDITELEM>ZMASSBP</EDITELEM>
+     <EPRIMETHOD>Display</EPRIMETHOD>
+     <EPRIATTRIB>Description</EPRIATTRIB>
+     <APPLIC>*</APPLIC>
+     <CREA_REL>758</CREA_REL>
+     <CHAN_REL>758</CHAN_REL>
+     <VERSION>758</VERSION>
+     <OBJTYPECLS>01</OBJTYPECLS>
+     <KEYLENGTH>10</KEYLENGTH>
+     <MODELONLY>R</MODELONLY>
+     <REL_REL>758</REL_REL>
+    </TOJTB>
+   </TOJTB>
+   <TOJTT>
+    <TOJTT>
+     <NAME>ZMASSBP</NAME>
+     <LANGUAGE>E</LANGUAGE>
+     <NTEXT>MASS BP 4VWR</NTEXT>
+     <STEXT>MASS BP 4VWR</STEXT>
+    </TOJTT>
+   </TOJTT>
+  </asx:values>
+ </asx:abap>
+</abapGit>

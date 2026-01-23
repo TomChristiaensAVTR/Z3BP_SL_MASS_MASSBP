@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZMASSBP</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>MASSBP Related Messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMASSBP</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>No SAP Messages triggered - Updates most probably successfully pisted ...</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMASSBP</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Changes require KNA1-ZZ1_CRREASON_CUS - CENTRAL KNA1 data is required</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>
