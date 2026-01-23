@@ -18,7 +18,7 @@ I have foreseen these fields in the corresponding view that can be 1 to 1 mapped
 
 <img width="1348" height="980" alt="image" src="https://github.com/user-attachments/assets/f448a05d-92e5-4e83-b6e4-5f3e55dff53e" />
 
-
+Another important point is that CDS views are used and NOT CDS view entities. The reason is that the corresponding SQL view is used in the setup of the MASS transaction.
 
 **Setup**
 In order to setup the transaction MASS for the custom BP object the following needs to be done:
@@ -36,6 +36,7 @@ Therefore the activation could raise an error.
 <img width="1134" height="441" alt="image" src="https://github.com/user-attachments/assets/e219995d-6bce-4104-8ae7-164dbaf08e23" />
 
 3/ STEP 3: Do the setup for the different dimensions/tables/views that are to be updated.
+Please notice that I am using the SQL view of a CDS view. (I was obliged due to the fact that CDS entities are not compatible with the MASS setup)
 
 <img width="1889" height="597" alt="image" src="https://github.com/user-attachments/assets/227d7d07-2549-4cb9-9e8c-e3145324c0b7" />
 
