@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_MASSBP_PARA_MOD_V02</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Mass Upd BP - Modifier - Parallel - Full Scope</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_BP_CENTR_ORG_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over CENTRAL ORGANIZATIONAL Data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_BP_PHONE_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over PHONE Data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_BP_POSTAL_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over POSTAL Data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_BP_SMTP_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over SMTP Data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_BP_SMTP_DATA_DELTA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over SMTP Data - Delta</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_BP_SMTP_DATA_FULL</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over SMTP Data - Full</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_CUST_COMPANY_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over COMPANY Data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>COPY_CUST_SALES_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Take Over SALES Data</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DETERMINE_KUNNR_RANGE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine Range of Customers</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DETERMINE_SELDAT_FLAGS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Determine Dimension FLAGS - Full</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>INITIALIZE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Initialize</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SET_COMM_STRUCTURE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Setter - Communication Structure</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
