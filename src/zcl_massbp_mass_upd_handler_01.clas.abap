@@ -17,13 +17,18 @@ CLASS zcl_massbp_mass_upd_handler_01 DEFINITION
     "! <p class="shorttext synchronized">File Upl. - At CL_MASS_SPSH_IMP_INT - Before SETUP_TABLES</p>
     METHODS at_mass_setup_tables_before
       IMPORTING iv_zmassbp_multi_tab_enabled TYPE abap_bool.
+
+    "! <p class="shorttext synchronized">Field Number Limitation - At SAPMMSDL - FORM build_tables_tab</p>
+    METHODS at_build_tables_tab
+      IMPORTING it_selected_fields TYPE mass_selfields
+      CHANGING  cv_subrc           TYPE sysubrc.
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
 
 
 
-CLASS ZCL_MASSBP_MASS_UPD_HANDLER_01 IMPLEMENTATION.
+CLASS zcl_massbp_mass_upd_handler_01 IMPLEMENTATION.
 
 
   METHOD at_mass_setup_tables_start.
@@ -42,6 +47,10 @@ CLASS ZCL_MASSBP_MASS_UPD_HANDLER_01 IMPLEMENTATION.
 
 
   METHOD at_mass_setup_tables_before.
+  ENDMETHOD.
+
+
+  METHOD at_build_tables_tab.
   ENDMETHOD.
 
 

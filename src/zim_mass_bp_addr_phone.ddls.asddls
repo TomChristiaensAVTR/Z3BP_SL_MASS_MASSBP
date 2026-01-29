@@ -14,14 +14,17 @@
 
 define view ZIM_MASS_BP_ADDR_PHONE
   as select from but020                 as BusinessPartnerAddress
-    inner join   ZBM_MASS_BP_ADDR_PHONE as _AddressPhoneNumber on _AddressPhoneNumber.addrnumber = BusinessPartnerAddress.addrnumber
+
+    inner join   ZBM_MASS_BP_ADDR_PHONE as _AddressPhoneNumber    on _AddressPhoneNumber.addrnumber = BusinessPartnerAddress.addrnumber
 
   association [1..1] to I_BusinessPartner as _BusinessPartner on $projection.Partner = _BusinessPartner.BusinessPartner
+
 {
-  key BusinessPartnerAddress.partner    as Partner,
-  key _AddressPhoneNumber.addrnumber    as addrnumber, 
-  key _AddressPhoneNumber.consnumber    as Phone_consnumber,
-      _AddressPhoneNumber.consnumber    as consnumber,
+  key BusinessPartnerAddress.partner  as Partner,
+  key _AddressPhoneNumber.addrnumber  as addrnumber,
+  key _AddressPhoneNumber.consnumber  as Phone_consnumber,
+
+      _AddressPhoneNumber.consnumber  as consnumber,
       _AddressPhoneNumber.persnumber,
       _AddressPhoneNumber.COUNTRY,
       _AddressPhoneNumber.TELEPHONE,
@@ -34,9 +37,9 @@ define view ZIM_MASS_BP_ADDR_PHONE
       _AddressPhoneNumber.EXTENSION,
       _AddressPhoneNumber.VALID_FROM,
       _AddressPhoneNumber.VALID_TO,
-      
+
       BusinessPartnerAddress.address_guid
 }
-where
-      persnumber is initial
-  and VALID_TO   = '99991231'
+
+where persnumber is initial
+  and VALID_TO    = '99991231'

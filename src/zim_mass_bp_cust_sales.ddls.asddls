@@ -6,8 +6,11 @@
 
 @EndUserText.label: 'Customer KNVV'
 
+@ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #XL, dataClass: #MIXED }
+
 define view ZIM_MASS_BP_CUST_SALES
   as select from knvv
+    inner join   kna1   as _kna1   on knvv.kunnr = _kna1.kunnr
     inner join   but000 as _but000 on knvv.kunnr = _but000.partner
 {
   key _but000.partner          as PARTNER,
@@ -16,6 +19,7 @@ define view ZIM_MASS_BP_CUST_SALES
   key knvv.spart               as SPART,
   
       knvv.kunnr               as KUNNR,
+      _kna1.zz1_crreason_cus   as zz1_crreason_cus,
       _but000.type             as Type,
       _but000.bpkind           as Bpkind,
       _but000.bu_group         as Bu_Group,

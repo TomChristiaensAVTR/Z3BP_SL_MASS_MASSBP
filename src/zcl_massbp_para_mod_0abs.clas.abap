@@ -18,8 +18,8 @@ CLASS zcl_massbp_para_mod_0abs DEFINITION
   PROTECTED SECTION.
     "! <p class="shorttext synchronized">Is the MODIFY of the BP successful?</p>
     METHODS is_successfull
-      IMPORTING it_bapiretm           TYPE bapiretm
-      RETURNING VALUE(rv_successfull) TYPE abap_bool.
+      EXPORTING ev_successfull TYPE abap_bool
+      CHANGING  ct_bapiretm    TYPE bapiretm.
 ENDCLASS.
 
 
@@ -29,8 +29,8 @@ CLASS zcl_massbp_para_mod_0abs IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD is_successfull.
-    rv_successfull = abap_true.
-    LOOP AT it_bapiretm
+    ev_successfull = abap_true.
+    LOOP AT ct_bapiretm
          ASSIGNING FIELD-SYMBOL(<ls_bapiretm>).
 
       LOOP AT <ls_bapiretm>-object_msg
@@ -39,7 +39,7 @@ CLASS zcl_massbp_para_mod_0abs IMPLEMENTATION.
         IF    <ls_object_msg>-type = 'E'
            OR <ls_object_msg>-type = 'A'.
           " Error occurred
-          rv_successfull = abap_false.
+          ev_successfull = abap_false.
         ENDIF.
       ENDLOOP.
       IF sy-subrc <> 0.

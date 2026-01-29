@@ -12,7 +12,9 @@ CLASS zcl_massbp_para_reader_01 DEFINITION
     METHODS set_customers
       IMPORTING it_customers TYPE zcl_massbp_data_reader_01=>tt_kunnr.
 
-    DATA mt_customers TYPE zcl_massbp_data_reader_01=>tt_kunnr.
+    METHODS process.
+
+    DATA mt_customers TYPE zcl_massbp_data_reader_01=>tt_kunnr READ-ONLY.
     DATA mt_bp        TYPE cvis_ei_extern_t READ-ONLY.
 ENDCLASS.
 
@@ -22,13 +24,17 @@ CLASS zcl_massbp_para_reader_01 IMPLEMENTATION.
     mt_customers = it_customers.
   ENDMETHOD.
 
-  METHOD if_abap_parallel~do.
+  METHOD process.
     " Get Data
     DATA(lo_reader) = zcl_massbp_data_reader_01=>get_instance( ).
     lo_reader->get_bp_from_customer( EXPORTING it_customers         = mt_customers
                                                iv_bypass_buffer     = abap_true
                                                iv_scope_full        = abap_true
                                      IMPORTING et_business_partners = mt_bp ).
+  ENDMETHOD.
+
+  METHOD if_abap_parallel~do.
+    process(  ).
   ENDMETHOD.
 
   METHOD set_customers.

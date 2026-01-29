@@ -6,15 +6,20 @@
 
 @EndUserText.label: 'Customer KNB1'
 
+@ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #XL, dataClass: #MIXED }
+
 define view ZIM_MASS_BP_CUST_COMPANY
   as select from knb1
+    inner join   kna1   as _kna1   on knb1.kunnr = _kna1.kunnr
     inner join   but000 as _but000 on knb1.kunnr = _but000.partner
     inner join   t001   as _t001   on knb1.bukrs = _t001.bukrs
+    
 {
   key _but000.partner           as PARTNER,  
   key knb1.bukrs                as BUKRS,
   
       knb1.kunnr                as KUNNR,
+      _kna1.zz1_crreason_cus    as zz1_crreason_cus,
       _but000.type              as Type,
       _but000.bpkind            as Bpkind,
       _but000.bu_group          as Bu_Group,

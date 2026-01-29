@@ -12,6 +12,8 @@ CLASS zcl_massbp_para_validator_01 DEFINITION
     METHODS set_bp
       IMPORTING is_bp TYPE cvis_ei_extern.
 
+    METHODS process.
+
     DATA ms_bp         TYPE cvis_ei_extern     READ-ONLY.
     DATA mt_return_map TYPE mdg_bs_bp_msgmap_t READ-ONLY.
 ENDCLASS.
@@ -22,9 +24,13 @@ CLASS zcl_massbp_para_validator_01 IMPLEMENTATION.
     ms_bp = is_bp.
   ENDMETHOD.
 
-  METHOD if_abap_parallel~do.
+  METHOD process.
     cl_md_bp_maintain=>validate_single( EXPORTING i_data        = ms_bp
                                         IMPORTING et_return_map = mt_return_map ).
+  ENDMETHOD.
+
+  METHOD if_abap_parallel~do.
+    process( ).
   ENDMETHOD.
 
   METHOD set_bp.

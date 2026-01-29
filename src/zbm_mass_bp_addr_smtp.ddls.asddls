@@ -9,7 +9,10 @@
 @ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
 
 define view entity ZBM_MASS_BP_ADDR_SMTP
-  as select from adr6
+  as select from but020
+   
+  left outer join adr6 as _Mail
+    on but020.addrnumber = _Mail.addrnumber 
 
   association [0..*] to I_AddressCommunicationRemark_2 as _AddressCommunicationRemark
     on  $projection.addrnumber                              = _AddressCommunicationRemark.AddressID
@@ -24,23 +27,36 @@ define view entity ZBM_MASS_BP_ADDR_SMTP
     and _AddressCommunicationUsage.CommunicationMediumType = 'INT'
 
 {
-  key addrnumber                                                       as addrnumber,
-  key persnumber                                                       as persnumber,
-  key consnumber                                                       as consnumber,
+  key but020.addrnumber                                                      as addrnumber,
+  key _Mail.persnumber                                                       as persnumber,
+  key _Mail.consnumber                                                       as consnumber,
       // TCH - Shortened the field to be able to CHANGE IT in ZMASS.
       // Indeed, when too long, then the field is NOT EDITABLE ...
-      cast(smtp_addr as zmassbp_ad_smtpadr )                           as E_MAIL,
-      cast(flgdefault as ad_emailcurdflt preserving type)              as STD_NO,
-      cast(flg_nouse as ad_commlinenotforunslctdcntct preserving type) as FLG_NOUSE,
+      
+      but020.partner                                                         as partner,
+      
+      case when _Mail.persnumber is null    then ''
+           when _Mail.persnumber is initial then ''
+           else _Mail.persnumber  
+      end                                                                    as Smtp_persnumber,
 
-      case valid_from
-          when '' then '00010101'
-          else cast(substring(valid_from, 1, 8) as abap.dats)
+      case when _Mail.consnumber is null    then '000'
+           when _Mail.consnumber is initial then '000'
+           else _Mail.consnumber  
+      end                                                                    as Smtp_consnumber,
+      
+      cast(_Mail.smtp_addr as zmassbp_ad_smtpadr )                           as E_MAIL,
+      cast(_Mail.flgdefault as ad_emailcurdflt preserving type)              as STD_NO,
+      cast(_Mail.flg_nouse as ad_commlinenotforunslctdcntct preserving type) as FLG_NOUSE,
+
+      case when _Mail.valid_from is initial then '00010101'
+           when _Mail.valid_from is null    then '00010101'
+           else cast(substring(_Mail.valid_from, 1, 8) as abap.dats)
       end                                                              as VALID_FROM,
 
-      case valid_to
-          when '' then '99991231'
-          else cast(substring(valid_to, 1, 8) as abap.dats)
+      case when _Mail.valid_to is initial then '99991231'
+           when _Mail.valid_to is null    then '99991231'
+           else cast(substring(_Mail.valid_to, 1, 8) as abap.dats)
       end                                                              as VALID_TO,
 
       _AddressCommunicationRemark,

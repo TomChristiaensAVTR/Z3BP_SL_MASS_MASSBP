@@ -36,7 +36,8 @@ CLASS zcl_massbp_para_mod_v01 IMPLEMENTATION.
     INSERT me->ms_bp_new INTO TABLE me->mt_bp_new.
     cl_md_bp_maintain=>maintain( EXPORTING i_data   = mt_bp_new
                                  IMPORTING e_return = mt_bapiretm ).
-    DATA(lv_successfull) = is_successfull( mt_bapiretm ).
+    is_successfull( IMPORTING ev_successfull = DATA(lv_successfull)
+                    CHANGING  ct_bapiretm    = mt_bapiretm ).
     IF lv_successfull = abap_true.
       CALL FUNCTION 'BAPI_TRANSACTION_COMMIT'
         EXPORTING

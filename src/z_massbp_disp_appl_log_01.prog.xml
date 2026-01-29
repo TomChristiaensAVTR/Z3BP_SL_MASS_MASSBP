@@ -13,8 +13,14 @@
    <TPOOL>
     <item>
      <ID>I</ID>
+     <KEY>000</KEY>
+     <ENTRY>Application Log Restriction</ENTRY>
+     <LENGTH>54</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
      <KEY>001</KEY>
-     <ENTRY>Time restriction</ENTRY>
+     <ENTRY>Time Restriction</ENTRY>
      <LENGTH>26</LENGTH>
     </item>
     <item>
@@ -24,35 +30,35 @@
     </item>
     <item>
      <ID>S</ID>
-     <KEY>DATBIS</KEY>
+     <KEY>P_DATBIS</KEY>
      <ENTRY>.</ENTRY>
      <LENGTH>9</LENGTH>
      <SPLIT>D</SPLIT>
     </item>
     <item>
      <ID>S</ID>
-     <KEY>DATVON</KEY>
+     <KEY>P_DATVON</KEY>
      <ENTRY>.</ENTRY>
      <LENGTH>9</LENGTH>
      <SPLIT>D</SPLIT>
     </item>
     <item>
      <ID>S</ID>
-     <KEY>EXTNO</KEY>
+     <KEY>P_EXTNO</KEY>
      <ENTRY>.</ENTRY>
      <LENGTH>9</LENGTH>
      <SPLIT>D</SPLIT>
     </item>
     <item>
      <ID>S</ID>
-     <KEY>ZEITBIS</KEY>
+     <KEY>P_ZEITBI</KEY>
      <ENTRY>.</ENTRY>
      <LENGTH>9</LENGTH>
      <SPLIT>D</SPLIT>
     </item>
     <item>
      <ID>S</ID>
-     <KEY>ZEITVON</KEY>
+     <KEY>P_ZEITVO</KEY>
      <ENTRY>.</ENTRY>
      <LENGTH>9</LENGTH>
      <SPLIT>D</SPLIT>

@@ -43,7 +43,7 @@ define view entity ZBM_MASS_BP_ADDR_PHONE
       tel_number                                                       as TELEPHONE,
       telnr_long                                                       as TEL_NO,
       telnr_call                                                       as CALLER_NO,
-      cast(flgdefault as ad_emailcurdflt preserving type)              as STD_NO,
+      cast(flgdefault as ad_phnmbrcurovrldflt preserving type)         as STD_NO,
       cast(flg_nouse as ad_commlinenotforunslctdcntct preserving type) as FLG_NOUSE,
       dft_receiv                                                       as STD_RECIP,
       cast(r3_user    as ad_phonenumbertype preserving type)           as R_3_USER,

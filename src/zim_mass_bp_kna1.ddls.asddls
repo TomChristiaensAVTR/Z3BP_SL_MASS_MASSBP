@@ -1,19 +1,22 @@
-@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AbapCatalog.viewEnhancementCategory: [ #NONE ]
+
 @AccessControl.authorizationCheck: #NOT_REQUIRED
+
 @EndUserText.label: 'Mass BP - KNA1 & BUT000'
+
 @Metadata.ignorePropagatedAnnotations: true
-@ObjectModel.usageType:{
-    serviceQuality: #X,
-    sizeCategory: #S,
-    dataClass: #MIXED
-}
+
+@ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
+
 define view entity ZIM_MASS_BP_KNA1
   as select from kna1
+
     inner join   but000 as _but000 on kna1.kunnr = _but000.partner
+
 {
   key _but000.partner          as PARTNER,
   key kna1.kunnr               as KUNNR,
-  
+
       _but000.type             as Type,
       _but000.bpkind           as Bpkind,
       _but000.bu_group         as Bu_Group,
@@ -101,16 +104,16 @@ define view entity ZIM_MASS_BP_KNA1
       _but000.valid_from       as Valid_From,
       _but000.valid_to         as Valid_To,
       _but000.xpcpt            as Xpcpt,
-      //_but000.data_ctrlr1      as Data_Ctrlr1,
-      //_but000.data_ctrlr2      as Data_Ctrlr2,
-      //_but000.data_ctrlr3      as Data_Ctrlr3,
-      //_but000.data_ctrlr4      as Data_Ctrlr4,
-      //_but000.data_ctrlr5      as Data_Ctrlr5,
-      //_but000.data_ctrlr6      as Data_Ctrlr6,
-      //_but000.data_ctrlr7      as Data_Ctrlr7,
-      //_but000.data_ctrlr8      as Data_Ctrlr8,
-      //_but000.data_ctrlr9      as Data_Ctrlr9,
-      //_but000.data_ctrlr10     as Data_Ctrlr10,
+      // _but000.data_ctrlr1      as Data_Ctrlr1,
+      // _but000.data_ctrlr2      as Data_Ctrlr2,
+      // _but000.data_ctrlr3      as Data_Ctrlr3,
+      // _but000.data_ctrlr4      as Data_Ctrlr4,
+      // _but000.data_ctrlr5      as Data_Ctrlr5,
+      // _but000.data_ctrlr6      as Data_Ctrlr6,
+      // _but000.data_ctrlr7      as Data_Ctrlr7,
+      // _but000.data_ctrlr8      as Data_Ctrlr8,
+      // _but000.data_ctrlr9      as Data_Ctrlr9,
+      // _but000.data_ctrlr10     as Data_Ctrlr10,
       _but000.xdcset           as Xdcset,
       _but000./ceeib/sk_resid  as /ceeib/sk_Resid,
       _but000.bank_area        as Bank_Area,
@@ -199,8 +202,10 @@ define view entity ZIM_MASS_BP_KNA1
       kna1.bran4               as Bran4,
       kna1.bran5               as Bran5,
       kna1.ekont               as Ekont,
-      @Semantics.amount.currencyCode : 'uwaer'
+
+      @Semantics.amount.currencyCode: 'uwaer'
       kna1.umsat               as Umsat,
+
       kna1.umjah               as Umjah,
       kna1.uwaer               as Uwaer,
       kna1.jmzah               as Jmzah,
@@ -216,8 +221,10 @@ define view entity ZIM_MASS_BP_KNA1
       kna1.katr9               as Katr9,
       kna1.katr10              as Katr10,
       kna1.stkzn               as Stkzn,
-      @Semantics.amount.currencyCode : 'uwaer'
+
+      @Semantics.amount.currencyCode: 'uwaer'
       kna1.umsa1               as Umsa1,
+
       kna1.txjcd               as Txjcd,
       kna1.periv               as Periv,
       kna1.abrvw               as Abrvw,
@@ -233,7 +240,7 @@ define view entity ZIM_MASS_BP_KNA1
       kna1.sperz               as Sperz,
       kna1.etikg               as Etikg,
       kna1.civve               as Civve,
-      //kna1.milve               as Milve,
+      // kna1.milve               as Milve,
       kna1.kdkg1               as Kdkg1,
       kna1.kdkg2               as Kdkg2,
       kna1.kdkg3               as Kdkg3,
@@ -310,8 +317,8 @@ define view entity ZIM_MASS_BP_KNA1
       kna1.data_ctrlr8         as Data_Ctrlr8,
       kna1.data_ctrlr9         as Data_Ctrlr9,
       kna1.data_ctrlr10        as Data_Ctrlr10,
-      //kna1.xdcset              as Xdcset,
-      //kna1./vso/r_palhgt       as /vso/rPalhgt,
+      // kna1.xdcset              as Xdcset,
+      // kna1./vso/r_palhgt       as /vso/rPalhgt,
       kna1./vso/r_pal_ul       as /vso/r_Pal_Ul,
       kna1./vso/r_pk_mat       as /vso/r_Pk_Mat,
       kna1./vso/r_matpal       as /vso/r_Matpal,

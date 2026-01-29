@@ -14,19 +14,23 @@
 
 define view ZIM_MASS_BP_ADDR_SMTP
   as select from but020                as BusinessPartnerAddress
-    inner join   ZBM_MASS_BP_ADDR_SMTP as _AddressEmailAddress on _AddressEmailAddress.addrnumber = BusinessPartnerAddress.addrnumber
+  association [0..1] to ZBM_MASS_BP_ADDR_SMTP as _AddressEmailAddress 
+    on  _AddressEmailAddress.addrnumber      = BusinessPartnerAddress.addrnumber
+    and _AddressEmailAddress.VALID_TO        = '99991231'
+    and _AddressEmailAddress.Smtp_persnumber = ''
 
-  association [1..1] to I_BusinessPartner as _BusinessPartner on $projection.Partner = _BusinessPartner.BusinessPartner
+  association [1..1] to I_BusinessPartner as _BusinessPartner 
+    on $projection.Partner = _BusinessPartner.BusinessPartner
 
 {
       // TCH - Mass BP - BUT000, BUT020 & ADRC
       // TCH - Translate the fields to the BAPI Fieldnames
       // TCH - See I_BusinessPartAddress_2 for more information ...
-  key BusinessPartnerAddress.partner   as Partner,
-  key _AddressEmailAddress.addrnumber  as addrnumber,
-  key _AddressEmailAddress.consnumber  as Smtp_consnumber,
-      _AddressEmailAddress.consnumber  as consnumber,  
-      _AddressEmailAddress.persnumber,
+  key BusinessPartnerAddress.partner        as Partner,
+  key _AddressEmailAddress.addrnumber       as addrnumber,
+  key _AddressEmailAddress.Smtp_consnumber  as Smtp_consnumber,  
+      _AddressEmailAddress.consnumber       as consnumber,  
+      _AddressEmailAddress.persnumber       as persnumber,
       _AddressEmailAddress.STD_NO,
       _AddressEmailAddress.FLG_NOUSE,
       _AddressEmailAddress.VALID_FROM,
@@ -37,6 +41,4 @@ define view ZIM_MASS_BP_ADDR_SMTP
       
       BusinessPartnerAddress.address_guid
 }
-where
-      persnumber is initial
-  and VALID_TO   = '99991231'
+

@@ -1,22 +1,25 @@
-@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AbapCatalog.viewEnhancementCategory: [ #NONE ]
+
 @AccessControl.authorizationCheck: #NOT_REQUIRED
+
 @EndUserText.label: 'Mass BP - KNVV & BUT000'
+
 @Metadata.ignorePropagatedAnnotations: true
-@ObjectModel.usageType:{
-    serviceQuality: #X,
-    sizeCategory: #S,
-    dataClass: #MIXED
-}
+
+@ObjectModel.usageType: { serviceQuality: #X, sizeCategory: #S, dataClass: #MIXED }
+
 define view entity ZIM_MASS_BP_KNVV
   as select from knvv
+
     inner join   but000 as _but000 on knvv.kunnr = _but000.partner
+
 {
   key _but000.partner          as PARTNER,
   key knvv.kunnr               as KUNNR,
   key knvv.vkorg               as VKORG,
   key knvv.vtweg               as VTWEG,
   key knvv.spart               as SPART,
-  
+
       _but000.type             as Type,
       _but000.bpkind           as Bpkind,
       _but000.bu_group         as Bu_Group,
@@ -156,8 +159,10 @@ define view entity ZIM_MASS_BP_KNVV
       knvv.perfk               as Perfk,
       knvv.perrl               as Perrl,
       knvv.kvakz               as Kvakz,
-      @Semantics.amount.currencyCode : 'waers'
+
+      @Semantics.amount.currencyCode: 'waers'
       knvv.kvawt               as Kvawt,
+
       knvv.waers               as Waers,
       knvv.klabc               as Klabc,
       knvv.ktgrd               as Ktgrd,
@@ -219,8 +224,8 @@ define view entity ZIM_MASS_BP_KNVV
       knvv.zz1_kvgr7           as Zz1_Kvgr7,
       knvv.zz1_kvgr8           as Zz1_Kvgr8,
       knvv.zz1_manl_inv        as Zz1_Manl_Inv,
-      //knvv.zz1_prsdt_csa       as Zz1PrsdtCsa,
-      //knvv.zz1_sd_man_inv_csa  as Zz1_Sd_Man_Inv_Csa,
+      // knvv.zz1_prsdt_csa       as Zz1PrsdtCsa,
+      // knvv.zz1_sd_man_inv_csa  as Zz1_Sd_Man_Inv_Csa,
       knvv.knvv_addr_eew_cust  as Knvv_Addr_Eew_Cust,
       knvv./bev1/emlgpfand,
       knvv./bev1/emlgforts,

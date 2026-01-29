@@ -78,6 +78,13 @@ CLASS zcl_massbp_data_reader_01 DEFINITION
                 it_sel_scope      TYPE tabname_md_tty OPTIONAL
       EXPORTING et_vendors        TYPE vmds_ei_extern_t.
 
+    METHODS get_bp_address_from_bp
+      IMPORTING it_bp_numbers        TYPE tt_business_partners
+                iv_scope_full        TYPE abap_bool         DEFAULT abap_false
+                it_sel_scope         TYPE bus_ei_fragment_t OPTIONAL
+      EXPORTING et_bp_data           TYPE bus_ei_extern_t
+                et_business_partners TYPE cvis_ei_extern_t.
+
     METHODS read_bp
       IMPORTING it_bp_numbers TYPE tt_business_partners
                 iv_scope_full TYPE abap_bool         DEFAULT abap_false
@@ -92,7 +99,7 @@ ENDCLASS.
 
 
 
-CLASS ZCL_MASSBP_DATA_READER_01 IMPLEMENTATION.
+CLASS zcl_massbp_data_reader_01 IMPLEMENTATION.
 
 
   METHOD constructor.
@@ -338,6 +345,22 @@ CLASS ZCL_MASSBP_DATA_READER_01 IMPLEMENTATION.
   ENDMETHOD.
 
 
+  METHOD get_bp_address_from_bp.
+
+    read_bp( EXPORTING it_bp_numbers = it_bp_numbers
+             IMPORTING et_bp_data    = et_bp_data  ).
+
+    IF et_business_partners IS REQUESTED.
+      LOOP AT et_bp_data
+           ASSIGNING FIELD-SYMBOL(<ls_bp_data>).
+        APPEND INITIAL LINE TO et_business_partners
+               ASSIGNING FIELD-SYMBOL(<ls_business_partners>).
+        <ls_business_partners>-partner = <ls_bp_data>.
+      ENDLOOP.
+    ENDIF.
+  ENDMETHOD.
+
+
   METHOD read_bp.
     DATA lt_idlist TYPE TABLE OF bus_ei_instance.
 
@@ -359,12 +382,16 @@ CLASS ZCL_MASSBP_DATA_READER_01 IMPLEMENTATION.
 
     IF lt_idlist IS NOT INITIAL.
       CALL FUNCTION 'BUPA_OUTBOUND_BPS_FILL_CENTRAL'
-        EXPORTING iv_mode      = 'E' " Transmit mode
-                  iv_rep       = 'X' " DPP ( End of purpose ) blocked BPs are not returned in replication mode
-        TABLES    it_idlist    = lt_idlist
-                  it_fragments = lt_sel_scope
-        CHANGING  ct_bp_extern = et_bp_data.
+        EXPORTING
+          iv_mode      = 'E' " Transmit mode
+          iv_rep       = 'X' " DPP ( End of purpose ) blocked BPs are not returned in replication mode
+        TABLES
+          it_idlist    = lt_idlist
+          it_fragments = lt_sel_scope
+        CHANGING
+          ct_bp_extern = et_bp_data.
     ENDIF.
+
   ENDMETHOD.
 
 

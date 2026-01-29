@@ -26,6 +26,7 @@ CLASS zcl_massbp_upd_str_v01 IMPLEMENTATION.
     " Setup of ls_bp
     LOOP AT mo_container->ms_comm_update-seldata
          ASSIGNING FIELD-SYMBOL(<ls_seldat>).
+
       " Loop over all the involved tables/dimensions
       LOOP AT mo_container->ms_comm_update-ref_massgenchange->*
            ASSIGNING FIELD-SYMBOL(<ls_massgenchange>)

@@ -3,6 +3,7 @@
 {
 "FROM":
 [
+"ZBM_MASS_BP_COMM_CENTR_ORG",
 "BUT000"
 ],
 "ASSOCIATED":
