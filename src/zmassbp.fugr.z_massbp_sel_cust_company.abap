@@ -14,6 +14,7 @@ FUNCTION z_massbp_sel_cust_company.
 *"      WHERE OPTIONAL
 *"  EXCEPTIONS
 *"      BLOCKED_PARTNER
+*"      SINGLE_NOT_FOUND
 *"----------------------------------------------------------------------
 
   " Reference copied from BUPA_MASS_SEL_BUT000
@@ -67,7 +68,8 @@ FUNCTION z_massbp_sel_cust_company.
     "only if items of table BUT000 are available.
     SELECT SINGLE * FROM zim_mass_bp_knb1
            INTO CORRESPONDING FIELDS OF @wasingle
-           WHERE partner = @wasingle-partner.
+           WHERE partner = @wasingle-partner
+             AND bukrs   = @wasingle-bukrs.
     IF NOT sy-subrc IS INITIAL.
       RAISE single_not_found.
     ENDIF.
@@ -153,11 +155,13 @@ FUNCTION z_massbp_sel_cust_company.
 
     REFRESH: selecttable.
     SORT lt_mass_bp_knb1 BY partner
-                      valid_from
-                      valid_to.
+                            bukrs
+                            valid_from
+                            valid_to.
     DELETE ADJACENT DUPLICATES
            FROM lt_mass_bp_knb1
            COMPARING partner
+                     bukrs
                      valid_from
                      valid_to.
 
@@ -168,6 +172,7 @@ FUNCTION z_massbp_sel_cust_company.
     LOOP AT lt_mass_bp_knb1
          ASSIGNING FIELD-SYMBOL(<ls_but000_tmp>)
          GROUP BY ( partner = <ls_but000_tmp>-partner
+                    bukrs   = <ls_but000_tmp>-bukrs
                     kunnr   = <ls_but000_tmp>-kunnr
                     size    = GROUP SIZE
                     index   = GROUP INDEX )

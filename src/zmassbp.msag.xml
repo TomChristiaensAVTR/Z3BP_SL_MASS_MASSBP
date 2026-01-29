@@ -18,7 +18,13 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZMASSBP</ARBGB>
      <MSGNR>002</MSGNR>
-     <TEXT>Changes require KNA1-ZZ1_CRREASON_CUS - CENTRAL KNA1 data is required</TEXT>
+     <TEXT>Changes require ZZ1_CRREASON_CUS - CENTRAL ORG data is required</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMASSBP</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Processing BP &amp;1</TEXT>
     </T100>
    </T100>
   </asx:values>

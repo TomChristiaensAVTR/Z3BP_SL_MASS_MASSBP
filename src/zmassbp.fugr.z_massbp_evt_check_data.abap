@@ -9,5 +9,4 @@ FUNCTION z_massbp_evt_check_data.
 *"      NDATA TYPE  TABLE OPTIONAL
 *"      ODATA TYPE  TABLE OPTIONAL
 *"----------------------------------------------------------------------
-
 ENDFUNCTION.

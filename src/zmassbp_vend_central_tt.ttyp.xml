@@ -3,15 +3,15 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD40V>
-    <TYPENAME>ZMASSBP_EI_SMTP_TT</TYPENAME>
+    <TYPENAME>ZMASSBP_VEND_CENTRAL_TT</TYPENAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <ROWTYPE>ZMASSBP_EI_SMTP</ROWTYPE>
+    <ROWTYPE>ZEM_MBPVENDLFA1</ROWTYPE>
     <ROWKIND>S</ROWKIND>
     <DATATYPE>STRU</DATATYPE>
     <ACCESSMODE>T</ACCESSMODE>
     <KEYDEF>D</KEYDEF>
     <KEYKIND>N</KEYKIND>
-    <DDTEXT>(NOT USED) - Upd BP- Table type ZMASSBP_EI_SMTP</DDTEXT>
+    <DDTEXT>Upd BP- Table type ZIM_MASS_BP_VEND_CENTR</DDTEXT>
    </DD40V>
   </asx:values>
  </asx:abap>

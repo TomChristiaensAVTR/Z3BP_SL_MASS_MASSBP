@@ -14,6 +14,7 @@ FUNCTION z_massbp_sel_cust_sales.
 *"      WHERE OPTIONAL
 *"  EXCEPTIONS
 *"      BLOCKED_PARTNER
+*"      SINGLE_NOT_FOUND
 *"----------------------------------------------------------------------
 
   " Reference copied from BUPA_MASS_SEL_BUT000

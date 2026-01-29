@@ -9,18 +9,25 @@ FUNCTION z_massbp_update.
 *"  EXPORTING
 *"     VALUE(MSG) TYPE  MASS_MSGS
 *"  TABLES
-*"      SZEM_MBPCUSTKNA1 STRUCTURE  ZEM_MBPCUSTKNA1 OPTIONAL
-*"      SZEM_MBPCUSTKNB1 STRUCTURE  ZEM_MBPCUSTKNB1 OPTIONAL
-*"      SZEM_MBPCUSTKNVV STRUCTURE  ZEM_MBPCUSTKNVV OPTIONAL
 *"      SZEM_MBPCENTRORG STRUCTURE  ZEM_MBPCENTRORG OPTIONAL
-*"      SZMASSBP_EI_POSTAL STRUCTURE  ZMASSBP_EI_POSTAL OPTIONAL
-*"      SZMASSBP_EI_SMTP STRUCTURE  ZMASSBP_EI_SMTP OPTIONAL
 *"      SZEM_MBPADDRPOST STRUCTURE  ZEM_MBPADDRPOST OPTIONAL
 *"      SZEM_MBPADDRSMTP STRUCTURE  ZEM_MBPADDRSMTP OPTIONAL
 *"      SZEM_MBPADDRPHONE STRUCTURE  ZEM_MBPADDRPHONE OPTIONAL
+*"      SZEM_MBPCUSTKNA1 STRUCTURE  ZEM_MBPCUSTKNA1 OPTIONAL
+*"      SZEM_MBPCUSTKNB1 STRUCTURE  ZEM_MBPCUSTKNB1 OPTIONAL
+*"      SZEM_MBPCUSTKNVV STRUCTURE  ZEM_MBPCUSTKNVV OPTIONAL
+*"      SZEM_MBPCUSTKNVI STRUCTURE  ZEM_MBPCUSTKNVI OPTIONAL
+*"      SZEM_MBPVENDLFA1 STRUCTURE  ZEM_MBPVENDLFA1 OPTIONAL
+*"      SZEM_MBPVENDLFB1 STRUCTURE  ZEM_MBPVENDLFB1 OPTIONAL
+*"      SZEM_MBPVENDLFM1 STRUCTURE  ZEM_MBPVENDLFM1 OPTIONAL
 *"      MASSGENCHANGE TYPE  MASSGENCHANGE_T OPTIONAL
 *"----------------------------------------------------------------------
 
+
+  " Set the context
+  gs_context-seldata       = seldata.
+  gs_context-testmode      = testmode.
+  gs_context-masssaveinfos = masssaveinfos.
 
   " Create central data container with the called communication signature ...
   DATA(lo_container) = NEW zcl_massbp_upd_0cont(
@@ -28,19 +35,23 @@ FUNCTION z_massbp_update.
       seldata              = seldata
       testmode             = testmode
       ref_msg              = REF #( msg[] )
-      ref_customer_central = REF #( szem_mbpcustkna1[] )
-      ref_customer_company = REF #( szem_mbpcustknb1[] )
-      ref_customer_sales   = REF #( szem_mbpcustknvv[] )
-      ref_bp_centr_org     = REF #( szem_mbpcentrorg[] )
+      ref_bp_centr_org     = REF #( szem_mbpcentrorg[] )    "LEADING TABLE/VIEW/DIMENSION
       ref_bp_postal        = REF #( szem_mbpaddrpost[] )
       ref_bp_smtp          = REF #( szem_mbpaddrsmtp[] )
       ref_bp_phone         = REF #( szem_mbpaddrphone[] )
+      ref_customer_central = REF #( szem_mbpcustkna1[] )
+      ref_customer_company = REF #( szem_mbpcustknb1[] )
+      ref_customer_sales   = REF #( szem_mbpcustknvv[] )
+      ref_customer_tax     = REF #( szem_mbpcustknvi[] )
+      ref_vendor_central   = REF #( szem_mbpvendlfa1[] )
+      ref_vendor_company   = REF #( szem_mbpvendlfb1[] )
+      ref_vendor_purch     = REF #( szem_mbpvendlfm1[] )
       ref_massgenchange    = REF #( massgenchange[] ) ) ).
 
   DATA lo_process  TYPE REF TO zcl_massbp_upd_str_0abs.
   DATA lv_strategy TYPE string.
 
-  " Delegate to specialized Class
+  " Delegate to specialized Updater Class
   lv_strategy = 'NEW_OO_V02'.
   IF lv_strategy = 'NEW_OO_V02'.
     lo_process ?= NEW zcl_massbp_upd_str_v02( lo_container ).
